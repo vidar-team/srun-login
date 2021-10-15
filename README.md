@@ -11,7 +11,7 @@
 git clone git@github.com:vidar-team/srun-login.git
 
 # 编译项目
-cd ./cmd && go build .
+cd srun-login/cmd && go build .
 
 # 模拟登录
 ./srun-login --username=<REDACTED> --password=<REDACTED>
