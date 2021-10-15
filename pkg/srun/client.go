@@ -18,6 +18,7 @@ import (
 
 // Client is the client of srun.
 type Client struct {
+	host     string
 	username string
 	password string
 
@@ -27,9 +28,10 @@ type Client struct {
 	n    string
 }
 
-// NewClient returns a new srun client with the provided username and password.
-func NewClient(username, password string) *Client {
+// NewClient returns a new srun client with the provided host, username and password.
+func NewClient(host, username, password string) *Client {
 	return &Client{
+		host:     host,
 		username: username,
 		password: password,
 
@@ -54,7 +56,7 @@ type ChallengeResponse struct {
 
 // GetChallenge requests srun to get a challenge code.
 func (c *Client) GetChallenge() (*ChallengeResponse, error) {
-	url := fmt.Sprintf("http://login.hdu.edu.cn/cgi-bin/get_challenge?callback=_&username=%s&ip=%s", c.username, c.ip)
+	url := fmt.Sprintf(c.host+"/cgi-bin/get_challenge?callback=_&username=%s&ip=%s", c.username, c.ip)
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, errors.Wrap(err, "http get")
@@ -93,7 +95,7 @@ type PortalResponse struct {
 // Portal login to srun with the username and password.
 // A challenge code from `GetChallenge()` should be provided.
 func (c *Client) Portal(challenge string) (*PortalResponse, error) {
-	u, err := url.Parse("http://login.hdu.edu.cn/cgi-bin/srun_portal")
+	u, err := url.Parse(c.host + "/cgi-bin/srun_portal")
 	if err != nil {
 		return nil, errors.Wrap(err, "parse URL")
 	}

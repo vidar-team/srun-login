@@ -15,11 +15,12 @@ func main() {
 		panic(err)
 	}
 
+	host := flag.String("host", "https://login.hdu.edu.cn/", "")
 	username := flag.String("username", "", "")
 	password := flag.String("password", "", "")
 	flag.Parse()
 
-	client := srun.NewClient(*username, *password)
+	client := srun.NewClient(*host, *username, *password)
 	challengeResp, err := client.GetChallenge()
 	if err != nil {
 		log.Fatal("Failed to get challenge %v", err)
