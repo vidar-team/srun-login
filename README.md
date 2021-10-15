@@ -1,16 +1,7 @@
-# 🐭 go-template ![Go](https://github.com/wuhan005/go-template/workflows/Go/badge.svg) [![Go Report Card](https://goreportcard.com/badge/github.com/wuhan005/go-template)](https://goreportcard.com/report/github.com/wuhan005/go-template) [![Sourcegraph](https://img.shields.io/badge/view%20on-Sourcegraph-brightgreen.svg?logo=sourcegraph)](https://sourcegraph.com/github.com/wuhan005/go-template)
+# ⚡ srun-login ![Go](https://github.com/vidar-team/srun-login/workflows/Go/badge.svg) [![Go Report Card](https://goreportcard.com/badge/github.com/vidar-team/srun-login)](https://goreportcard.com/report/github.com/vidar-team/srun-login) [![Sourcegraph](https://img.shields.io/badge/view%20on-Sourcegraph-brightgreen.svg?logo=sourcegraph)](https://sourcegraph.com/github.com/vidar-team/srun-login)
 
-My Go Project Template
-
-## Getting started
-
-* Update `README.md`.
-    * Choose a cool emoji.
-    * Rename the project.
-    * Update the Go badge, Go report card badge.
-    * Update the project description.
-    * Choose a friendly open source license.
-* Rename the package in `go.mod`.
-* Inspire the world!
+杭州电子科技大学校园网 WiFi 登录
 
 ## License
+
+MIT License

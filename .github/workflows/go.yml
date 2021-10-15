@@ -21,10 +21,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      #     Create frontend `dist` folder.
-      #
-      #     - name: Create frontend dist folder
-      #       run: mkdir frontend/dist/ && touch frontend/dist/1
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@v2.4.0
         with:
@@ -34,18 +30,6 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:12
-        env:
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
     steps:
       - name: Install Go
         uses: actions/setup-go@v2
@@ -53,14 +37,5 @@ jobs:
           go-version: 1.16.x
       - name: Checkout code
         uses: actions/checkout@v2
-      #      - name: Create frontend dist folder
-      #        run: mkdir frontend/dist/ && touch frontend/dist/1
       - name: Run tests
         run: go test -v -race ./...
-        env:
-          PGPORT: 5432
-          PGHOST: localhost
-          PGUSER: postgres
-          PGPASSWORD: postgres
-          PGSSLMODE: disable
-
