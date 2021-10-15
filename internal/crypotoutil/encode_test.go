@@ -21,7 +21,7 @@ func Test_Encode(test *testing.T) {
 			name:     "normal",
 			str:      "a",
 			slat:     "b",
-			expected: "s%3B%21f%F9u%ACP",
+			expected: "s;!f\xf9u\xacP",
 		},
 	} {
 		got, err := Encode(tc.str, tc.slat)
