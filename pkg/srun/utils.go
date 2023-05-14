@@ -8,7 +8,6 @@ import (
 	"encoding/json"
 
 	"github.com/pkg/errors"
-	"github.com/wuhan005/gadget"
 
 	"github.com/vidar-team/srun-login/internal/crypotoutil"
 )
@@ -36,19 +35,13 @@ func (c *Client) EncodeUserInfo(challenge string) (string, error) {
 		return "", errors.Wrap(err, "encode JSON")
 	}
 
-	encode, err := crypotoutil.Encode(string(jsonBytes), challenge)
-	if err != nil {
-		return "", errors.Wrap(err, "encode")
-	}
+	encode := crypotoutil.Encode(string(jsonBytes), challenge)
 	return "{SRBX1}" + crypotoutil.Base64([]byte(encode), crypotoutil.SrunAlphaSet), nil
 }
 
 // MakeChksum returns the checksum of the current request with the given challenge code.
 func (c *Client) MakeChksum(challenge string) (string, error) {
-	hmd5, err := crypotoutil.Md5(c.password, challenge)
-	if err != nil {
-		return "", errors.Wrap(err, "hmd5")
-	}
+	hmd5 := crypotoutil.Md5(c.password, challenge)
 
 	userInfo, err := c.EncodeUserInfo(challenge)
 	if err != nil {
@@ -69,5 +62,5 @@ func (c *Client) MakeChksum(challenge string) (string, error) {
 		str += challenge + f
 	}
 
-	return gadget.Sha1(str), nil
+	return crypotoutil.Sha1(str), nil
 }
