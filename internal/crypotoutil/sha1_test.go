@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_Encode(test *testing.T) {
+func Test_Sha1(test *testing.T) {
 	for _, tc := range []struct {
 		name     string
 		str      string
@@ -19,12 +19,11 @@ func Test_Encode(test *testing.T) {
 	}{
 		{
 			name:     "normal",
-			str:      "aaaaaaaaaaaa",
-			slat:     "bbbbbbbbbbbb",
-			expected: "\xd4\xeb24\xa6\xe5\x7dE_\xdc\xa5\xbc\xbe\xfb\x3a\xd1",
+			str:      "a",
+			expected: "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",
 		},
 	} {
-		got := Encode(tc.str, tc.slat)
+		got := Sha1(tc.str)
 		assert.Equal(test, tc.expected, got)
 	}
 }

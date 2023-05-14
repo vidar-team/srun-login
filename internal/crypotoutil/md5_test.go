@@ -24,8 +24,7 @@ func Test_Md5(test *testing.T) {
 			expected: "b4cc9d0fcff069fcd31afae0b7001434",
 		},
 	} {
-		got, err := Md5(tc.str, tc.slat)
-		assert.Nil(test, err)
+		got := Md5(tc.str, tc.slat)
 		assert.Equal(test, tc.expected, got)
 	}
 }

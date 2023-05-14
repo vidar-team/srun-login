@@ -105,10 +105,7 @@ func (c *Client) Portal(challenge string) (*PortalResponse, error) {
 	query.Set("action", "login")
 	query.Set("username", c.username)
 
-	passwordMd5, err := crypotoutil.Md5(c.password, challenge)
-	if err != nil {
-		return nil, errors.Wrap(err, "md5")
-	}
+	passwordMd5 := crypotoutil.Md5(c.password, challenge)
 
 	query.Set("password", "{MD5}"+passwordMd5)
 	query.Set("os", "Mac OS")
