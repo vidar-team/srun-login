@@ -35,7 +35,7 @@ func NewClient(host, username, password string) *Client {
 		username: username,
 		password: password,
 
-		acID: "0",
+		acID: "1",
 		typ:  "1",
 		n:    "200",
 	}
